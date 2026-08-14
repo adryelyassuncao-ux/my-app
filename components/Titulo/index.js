@@ -5,7 +5,7 @@ import estilo from './estilo';
 export default function Titulo() {
   return (
     <View style={estilo.box}>
-      <Text style={estilo.texto}>Notícia do dia</Text>
+      <Text style={estilo.texto}>Signos e datas</Text>
     </View>
   )
 }

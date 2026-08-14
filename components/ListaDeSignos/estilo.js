@@ -1,15 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 const estilo = StyleSheet.create({
-  box: {
-    backgroundColor: '#000',
-    alignItems: 'center',
+  container: {
+    flex: 1,
     padding: 10,
+    backgroundColor: '#fff',
   },
-  texto:{
-    fontSize: 28,
-    color: '#61dafb'
-  }
+ lista: {
+   padding: 10,
+   marginBottom: 60,
+ }
 });
 
 export default estilo;
