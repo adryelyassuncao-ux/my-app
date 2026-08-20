@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 const estilo = StyleSheet.create({
-  boxSigno:{
+  boxFilme:{
     padding: 10,
     borderWidth: 1,
     borderColor: '#000',
     borderRadius: 5,
     marginBottom: 10
   },
-  nomeSigno: {
+  nomeFilme: {
     fontSize: 18,
     color: '#204550',
     fontWeight: '600',

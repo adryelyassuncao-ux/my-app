@@ -1,16 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import estilo from './estilo';
 
 export default function ItemLista(props) {
   return (
-    <View style={estilo.boxSigno}>
-      <Text style={estilo.nomeSigno}>
+    <View style={estilo.boxFilme}>
+      <Image source={props.imagem} style={{width:60, height:60 }}/>
+      <Text style={estilo.nomeFilme}>
         {props.signo}
       </Text>
       
       <Text>
-        Nascidos entre: {props.dataInicio} - {props.dataFim}
+        Estreia: {props.ano} Gênero: {props.genero}
       </Text>
     </View>
   )

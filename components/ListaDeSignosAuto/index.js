@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import Titulo from '../Titulo/index.js';
-import ItemLista from '../ItemLista/index.js';
-import estilo from './estilo.js';
-
+import Titulo from '../Titulo';
+import ItemLista from '../ItemLista';
+import estilo from './estilo.js'
 export default function ListaDeSignosAuto() {
   const signos = [
     { signo: 'Aquário', dataInicio: '21/01', dataFim: '19/02' },
