@@ -4,31 +4,79 @@ import Titulo from '../Titulo';
 import ItemLista from '../ItemLista';
 import estilo from './estilo.js'
 export default function ListaDeSignosAuto() {
-  const signos = [
-    { signo: 'Aquário', dataInicio: '21/01', dataFim: '19/02' },
-    { signo: 'Peixes', dataInicio: '20/02', dataFim: '20/03' },
-    { signo: 'Áries', dataInicio: '21/03', dataFim: '20/04' },
-    { signo: 'Touro', dataInicio: '21/04', dataFim: '21/05' },
-    { signo: 'Gêmeos', dataInicio: '22/05', dataFim: '21/06' },
-    { signo: 'Câncer', dataInicio: '21/06', dataFim: '23/07' },
-    { signo: 'Leão', dataInicio: '24/07', dataFim: '23/08' },
-    { signo: 'Virgem', dataInicio: '24/08', dataFim: '23/09' },
-    { signo: 'Libra', dataInicio: '24/09', dataFim: '23/10' },
-    { signo: 'Escorpião', dataInicio: '24/10', dataFim: '22/11' },
-    { signo: 'Sagitário', dataInicio: '23/11', dataFim: '21/12' },
-    { signo: 'Capricórnio', dataInicio: '22/12', dataFim: '20/01' },
+  const filmes = [
+    { 
+      titulo:'Alice no País das Maravilhas',
+      Estreia: '22/08/2026',
+      imagem:require ('../../assets/alice.jpeg')
+    },
+    {  
+      titulo:'Homen-Aranha Aranhaverso',
+      Estreia:'23/08/2026',
+      imagem:require ('../../assets/Aranhaverso.jpeg')
+    },
+    { 
+      titulo:'La La Land',
+      Estreia:'23/08/2026',
+      imagem:require ('../../assets/LaLa.jpeg'),
+    },
+    { 
+      titulo:'Coraline 2',
+      Estreia:'24/08/2026',
+      imagem:require ('../../assets/Coraline_.jpeg')
+    },
+    {  
+      titulo:'Toy Story 5',
+      Estreia:'25/08/2026',
+      imagem:require ('../../assets/toysory5.png')
+    },
+    { 
+      titulo:'Só por Uma Noite',
+      Estreia:'25/08/2026',
+      imagem:require ('../../assets/SOporUmaNoite.jpeg')
+    },
+    { 
+      titulo:'Divertida Mente',
+      Estreia:'26/08/2026',
+      imagem:require ('../../assets/mente.jpeg')
+    },
+    {
+      titulo:'O fim da rua',
+      Estreia:'03/09/2026',
+      imagem:require ('../../assets/o fimdarua.jpeg')
+    },
+    { 
+      titulo:'Zootopia 2',
+      Estreia:'05/09/2026',
+      imagem:require ('../../assets/Zootopia.jpeg')
+    },
+    { 
+      titulo:'Homen-Aranha',
+      Estreia:'07/09/2026',
+      imagem:require ('../../assets/Homem-Aranha.jpeg')
+    },
+    { 
+      titulo:'Patrulha Canina',
+      Estreia:'09/09/2026',
+      imagem:require ('../../assets/Patrulha.jpeg'),
+    },
+    { 
+      titulo:'Rio 2',
+      Estreia:'12/09/2026',
+      imagem:require ('../../assets/poster.jpeg')
+    },
   ];
   return (
     <View style={estilo.container}>
       <Titulo />
 
       <ScrollView style={estilo.lista}>
-        {signos.map((signo, index) => (
+        {filmes.map((filme, index) => (
           <ItemLista
             key={index}
-            signo={signo.signo}
-            dataInicio={signo.dataInicio}
-            dataFim={signo.dataFim}
+            titulo={filme.titulo}
+            Estreia={filme.Estreia}
+            imagem={filme.imagem}
           />
         ))}
       </ScrollView>
