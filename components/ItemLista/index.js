@@ -21,3 +21,4 @@ export default function ItemLista(props) {
     </View>
   );
 }
+//colocar limite de caracter na descrição, e deixar com ler mais
