@@ -8,7 +8,7 @@ export default function ItemLista(props) {
         <Text style={estilo.nomeFilme}>
         {props.titulo}
       </Text>
-      <Image source={props.imagem} style={{ width: 200, height: 200, alignSelf: 'center' }} />
+      <Image source={props.imagem} style={{ width: 200, height: 300, alignSelf: 'center' }} />
     
       
       <Text>
