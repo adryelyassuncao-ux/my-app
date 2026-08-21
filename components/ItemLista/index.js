@@ -5,18 +5,19 @@ import estilo from './estilo';
 export default function ItemLista(props) {
   return (
     <View style={estilo.boxFilme}>
-        <Text style={estilo.nomeFilme}>
-        {props.titulo}
-      </Text>
-      <Image source={props.imagem} style={{ width: 200, height: 200, alignSelf: 'center' }} />
-    
-      
-      <Text>
-        {props.descricao}
-      </Text>
-      <Text>
-        Estreia: {props.Estreia}
-      </Text>
+      <Text style={estilo.nomeFilme}>{props.titulo}</Text>
+
+      <View style={estilo.conteudo}>
+        <Image source={props.imagem} style={estilo.imagem} />
+
+        <View style={estilo.textoContainer}>
+          {props.descricao ? (
+            <Text style={estilo.descricaoFilme}>Descrição: {props.descricao}</Text>
+          ) : null}
+
+          <Text style={estilo.estreia}>Estreia: {props.Estreia}</Text>
+        </View>
+      </View>
     </View>
   );
 }
