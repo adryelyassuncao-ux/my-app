@@ -1,25 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import Titulo from './components/Titulo';
 
 const estilo = StyleSheet.create({
-  boxTitulo: {
-    height: 80,
-    backgroundColor: '#1f4f66',
-    paddingHorizontal: 10,
-    paddingTop: 10,
-    justifyContent: 'center',
-  },
-
-  tituloCabecalho: {
-    color: '#0fc3d4',
-    fontWeight: '700',
-    fontSize: 20,
-  },
-
-  subtitulo: {
-    color: '#fff',
-  },
-
   tela: {
     width: '100%',
     justifyContent: 'center',
@@ -55,27 +38,21 @@ const estilo = StyleSheet.create({
   },
 });
 
-const Titulo = () => {
-  return (
-    <View style={estilo.boxTitulo}>
-      <Text style={estilo.tituloCabecalho}>
-        Sorteio DevMedia
-      </Text>
 
-      <Text style={estilo.subtitulo}>
-        Hora de ver quem é o vencedor
-      </Text>
-    </View>
-  );
-};
 
 const TelaInicial = () => {
   const [numeroSorteado, setNumeroSorteado] = useState(0);
+  const [num_escolha, setNunEscolha] = useState('');
+  const [num_rodadas, setNumRodadas] = useState(0);
 
   const gerarNumero = () => {
-    const novoNumero = Math.floor(Math.random() * 100 + 1);
+    const novoNumero = Math.floor(Math.random() * 100);
 
     setNumeroSorteado(novoNumero);
+
+    setNumRodadas(num_rodadas + 1);
+
+
   };
 
   return (
@@ -98,6 +75,20 @@ const TelaInicial = () => {
           color="#1f4f66"
         />
       </View>
+
+      <TextInput
+        placeholder='Digite um número de 0 - 99'
+        onChangeText={(text) => setNunEscolha(text)}
+        value={num_escolha}
+        keyboardType="numeric"
+        maxLength={2}
+      />
+
+      <Text>{num_escolha}</Text>
+
+      {num_rodadas >= 5 ?? (
+        <Text>Final Jogo</Text>
+      )}
 
     </View>
   );
