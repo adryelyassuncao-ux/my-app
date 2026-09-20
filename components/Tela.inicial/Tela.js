@@ -1,61 +1,128 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
-import estilo from './css'
-//preciso criar uma veriavel que armazena o numero escolhido<>
-//criar uma variavel para guardar o numero gerado da maquina<>
-//uma variavel para guardar em qual rodada esta<>
-//maquina precisa criar um numero de 0 a 99<>
-//maquina precisa validar o numero escolhido da pessoa para ver se da para acontecer o jogo<>
-//maquina precisa acrescentar uma próxima rodada ate chegar em 5
-//depois de numero escolhido e a pessoa enviar maquina faz o calculo da pontuação
-//maquina guarda a pontuação da pessoa
-//inicia uma nova rodada até chegar a 5
-//final é mostrado a pontuação que é no maximo 500
+import { 
+  View, 
+  Text, 
+  Button, 
+  TextInput, 
+  SafeAreaView, 
+  ScrollView, 
+  KeyboardAvoidingView, 
+  Platform,
+  useWindowDimensions 
+} from 'react-native';
+import estilo from './css';
 
 const Tela = () => {
+  const [num_escolhido, setNumEscolhido] = useState('');
+  const [num_sorteado, setNumSorteado] = useState(null);
+  const [num_rodadas, setNumRodadas] = useState(1);
+  const [textoguardado, setTextoGuardado] = useState('');
+  const [pontuacao, setRodadaPontuacao] = useState(0);
 
- const [num_escolhido, setNumEscolhido] = useState(0);
- const [num_sorteado, setNumSorteado] = useState(null);
- const [num_rodadas, setNumRodadas] = useState(1);
- const [textoguardado, setTextoGuardado] = useState('');
- //const [num_final, setNumeroFinal] = useState(null); talvel vc use ju no final
- const [pontuacao, setRodadaPontuacao] = useState(0); // essa talvez tambem vo deixar pra vc caso vc n use lembra de apagar
+  // Obtém a largura e altura em tempo real para responsividade imediata
+  const { width } = useWindowDimensions();
 
+  // Define uma largura proporcional ao ecrã (máximo de 450px para tablets/desktop)
+  const cardResponsiveWidth = Math.min(width * 0.9, 450);
 
-const ValidarNum = () =>
- {
-  
-  if(num_escolhido >= 100 || num_escolhido < 0 || isNaN(num_escolhido))
-  {
-    setTextoGuardado('O número deve ser entre 0 a 99');
-    return;
-  }
-  else
-  {
-    setTextoGuardado('');
-  }
+  const ValidarNum = () => {
+    const numeroConvertido = parseInt(num_escolhido, 10);
 
+    if (num_escolhido === '' || isNaN(numeroConvertido) || numeroConvertido < 0 || numeroConvertido >= 100) {
+      setTextoGuardado('O número deve ser entre 0 a 99');
+      return false;
+    } else {
+      setTextoGuardado('');
+      return true;
+    }
   };
- const criarNumero = () =>
- {
-   const NumeroCriado = Math.floor(Math.random() * 100);
 
-   setNumSorteado (NumeroCriado);
+  const criarNumero = () => {
+    if (!ValidarNum()) return;
+    if (num_rodadas > 5) return;
 
-   const operacao = num_escolhido - NumeroCriado;
-   const Ponto = Math.abs(operacao);
+    const valorUsuario = parseInt(num_escolhido, 10);
+    const NumeroCriado = Math.floor(Math.random() * 100);
+    setNumSorteado(NumeroCriado);
 
-   const resultado = 100 - Ponto;
+    let diferenca;
+    if (valorUsuario > NumeroCriado) {
+      diferenca = valorUsuario - NumeroCriado;
+    } else {
+      diferenca = NumeroCriado - valorUsuario;
+    }
 
-   setNumRodadas (num_rodadas + 1);
- };
- 
- 
+    let Ponto = 100 - diferenca;
+    if (Ponto < 0) Ponto = 0;
+
+    setRodadaPontuacao(pontuacao + Ponto);
+    setNumRodadas(num_rodadas + 1);
+    setNumEscolhido('');
+  };
+
+  const obterMensagemFinal = () => {
+    if (pontuacao >= 490) return "Você conseguiu! Um arraso babilônico";
+    if (pontuacao >= 400) return "Só mais um pouquinho";
+    if (pontuacao >= 300) return "Parabéns, você está muito perto";
+    if (pontuacao >= 200) return "Você chegou perto!";
+    return "Não foi dessa vez";
+  };
+
   return (
-    
-    <View>
-      <text>{textoguardado}</text>
-    </View>
+    <SafeAreaView style={estilo.safeContainer}>
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+        style={{ flex: 1, width: '100%' }}
+      >
+        <ScrollView 
+          contentContainerStyle={estilo.scrollContainer}
+          bounces={false}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={[estilo.card, { width: cardResponsiveWidth }]}>
+            {num_rodadas <= 5 ? (
+              <>
+                <Text style={estilo.tituloRodada}>Rodada {num_rodadas} de 5</Text>
+
+                <TextInput
+                  style={estilo.input}
+                  placeholder="Número de 0 a 99"
+                  placeholderTextColor="#8E72A7"
+                  keyboardType="numeric"
+                  value={num_escolhido.toString()}
+                  onChangeText={(v) => setNumEscolhido(v)}
+                />
+
+                <View style={estilo.botaoContainer}>
+                  <Button title="Enviar" color="#7B2CBF" onPress={criarNumero} />
+                </View>
+
+                {textoguardado !== '' && <Text style={estilo.textoErro}>{textoguardado}</Text>}
+
+                {num_sorteado !== null && (
+                  <View style={estilo.painelInfo}>
+                    <Text style={estilo.textoInfo}>
+                      Sorteado: <Text style={estilo.destaqueNumero}>{num_sorteado}</Text>
+                    </Text>
+                    <Text style={estilo.textoInfo}>
+                      Pontuação Atual: <Text style={estilo.destaqueNumero}>{pontuacao}</Text>
+                    </Text>
+                  </View>
+                )}
+              </>
+            ) : (
+              <>
+                <Text style={estilo.tituloFim}>Fim de Jogo!</Text>
+                <Text style={estilo.pontuacaoFinal}>
+                  Pontuação Final: <Text style={estilo.destaqueNumero}>{pontuacao}</Text> / 500
+                </Text>
+                <Text style={estilo.mensagemFinal}>{obterMensagemFinal()}</Text>
+              </>
+            )}
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 

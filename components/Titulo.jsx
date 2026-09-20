@@ -16,14 +16,14 @@ const Titulo = () => {
 const estilo = StyleSheet.create({
   boxTitulo: {
     height: 80,
-    backgroundColor: '#1f4f66',
+    backgroundColor: '#140a25',
     paddingHorizontal: 10,
     paddingTop: 10,
     justifyContent: 'center',
   },
 
   tituloCabecalho: {
-    color: '#0fc3d4',
+    color: '#8A2BE2',
     fontWeight: '700',
     fontSize: 20,
   },
