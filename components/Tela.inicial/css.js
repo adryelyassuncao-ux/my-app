@@ -1,99 +1,58 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  safeContainer: {
-    flex: 1,
-    backgroundColor: '#1E1035',
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    backgroundColor: '#1E1035',
+Container:
+{
+  flex:1,
+  width:'100%',
+  alignItems:'center',
+  backgroundColor: '#000000',
+  
+
+},
+ Titulo:
+ {
+  fontSize:50,
+  textAlign:'center',
+  width:'100%',
+  marginTop: '10%',
+  fontWeight:'bold',
+  color:'#ffff'
+ },
+
+Bola:
+{
+    width: '50%',                 
+    aspectRatio: 1,            
+    borderRadius: '60%',         
+    backgroundColor: '#ffffff', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    marginTop:'10%'
+},
+
+textoBola: {
+    color: '#000000',
+    fontSize: 100,
+    fontWeight: 'bold',
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 20,
-    paddingHorizontal: 16,
   },
-  card: {
-    backgroundColor: '#2A1745',
-    borderRadius: 20,
-    padding: 24,
-    shadowColor: '#8A2BE2',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 6,
-    alignItems: 'center',
-  },
-  tituloRodada: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#D8B4F8',
-    marginBottom: 20,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    textAlign: 'center',
-  },
+
   input: {
-    width: '100%',
-    backgroundColor: '#3B1E63',
-    color: '#FFFFFF',
-    fontSize: 18,
-    textAlign: 'center',
-    borderRadius: 12,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    borderWidth: 1.5,
-    borderColor: '#7B2CBF',
-    marginBottom: 16,
-  },
-  botaoContainer: {
-    width: '100%',
-    marginVertical: 10,
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-  textoErro: {
-    color: '#FF6B8B',
-    fontSize: 14,
-    marginTop: 10,
-    textAlign: 'center',
-  },
-  painelInfo: {
-    width: '100%',
-    marginTop: 20,
-    paddingTop: 16,
-    borderTopWidth: 1,
-    borderTopColor: '#3B1E63',
-    alignItems: 'center',
-  },
-  textoInfo: {
-    color: '#E0AAFF',
-    fontSize: 16,
-    marginVertical: 4,
-  },
-  destaqueNumero: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#9D4EDD',
-  },
-  tituloFim: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#C77DFF',
-    marginBottom: 12,
-    textAlign: 'center',
-  },
-  pontuacaoFinal: {
-    fontSize: 20,
-    color: '#FFFFFF',
-    marginBottom: 16,
-    textAlign: 'center',
-  },
-  mensagemFinal: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#E0AAFF',
-    textAlign: 'center',
-    lineHeight: 24,
-  },
+  height: 40,
+  width: '80%',
+  borderColor: '#ccc',
+  borderWidth: 1,
+  borderRadius: 8,
+  paddingHorizontal: 10,
+  marginTop: 15,
+  textAlign: 'center',
+  color: '#ffffff'
+},
+
+Botao:
+{
+ marginTop: '10%',
+ color: '#ffffff'
+}
 });
