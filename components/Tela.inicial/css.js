@@ -6,7 +6,7 @@ Container:
   flex:1,
   width:'100%',
   alignItems:'center',
-  backgroundColor: '#000000',
+  backgroundColor: '#ffffff',
   
 
 },
@@ -17,7 +17,7 @@ Container:
   width:'100%',
   marginTop: '10%',
   fontWeight:'bold',
-  color:'#ffff'
+  color:'#000000'
  },
 
 Bola:
@@ -25,14 +25,14 @@ Bola:
     width: '50%',                 
     aspectRatio: 1,            
     borderRadius: '60%',         
-    backgroundColor: '#ffffff', 
+    backgroundColor: '#c0c0c0', 
     justifyContent: 'center', 
     alignItems: 'center',
     marginTop:'10%'
 },
 
 textoBola: {
-    color: '#000000',
+    color: '#ffffff',
     fontSize: 100,
     fontWeight: 'bold',
     justifyContent: 'center',
@@ -45,14 +45,34 @@ textoBola: {
   borderWidth: 1,
   borderRadius: 8,
   paddingHorizontal: 10,
-  marginTop: 15,
+  marginTop: 25,
   textAlign: 'center',
-  color: '#ffffff'
+  color: '#000000'
 },
 
 Botao:
 {
  marginTop: '10%',
- color: '#ffffff'
+ color: '#ffffff',
+ width:'80%',
+},
+
+Caixa: {
+  width: '80%',
+  padding: 20, 
+  borderRadius: 10,
+  backgroundColor: '#cecece',
+  justifyContent: 'center',
+  alignItems: 'center',
+  
+},
+texto:
+{
+ marginTop:'10%'
+},
+TextoPontuacao:
+{
+  marginTop:'5%'
 }
+
 });

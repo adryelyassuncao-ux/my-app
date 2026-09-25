@@ -17,63 +17,92 @@ import estilo from './css'
 
 const Tela = () => {
 
- const [num_escolhido, setNumEscolhido] = useState(0);
+ const [num_escolhido, setNumEscolhido] = useState('');
  const [num_sorteado, setNumSorteado] = useState(0);
  const [num_rodadas, setNumRodadas] = useState(1);
  const [textoguardado, setTextoGuardado] = useState('');
- //const [num_final, setNumeroFinal] = useState(null); 
- const [pontuacao, setRodadaPontuacao] = useState(0); 
+ const [pontuacao, setRodadaPontuacao] = useState(0);
+ const [jogoFinalizado, setJogoFinalizado] = useState(false);
+
 
 
 const ValidarNum = () =>
  {
-
-  if(num_escolhido >= 100 || num_escolhido < 0 || isNaN(num_escolhido))
+  const num = parseInt(num_escolhido,10)
+  if(num >= 100 || num < 0 || isNaN(num))
   {
     setTextoGuardado('O número deve ser entre 0 a 99');
-    return;
+    return false;
   }
   else
   {
     setTextoGuardado('');
+    return true;
   }
 
   };
 
-
  const criarNumero = () =>
  {
-  if(num_rodadas < 5)
-  {
-   const NumeroCriado = Math.floor(Math.random() * 100);
-   setNumSorteado (NumeroCriado);
+    if(!ValidarNum())
+    {return; }
 
-   const operacao = num_escolhido - NumeroCriado;
-   const Ponto = Math.abs(operacao);
-   const resultado = 100 - Ponto;
+    if(num_rodadas <= 5)
+    {
+      const NumeroCriado = Math.floor(Math.random() * 100);
+      setNumSorteado (NumeroCriado);
+      
+      const num = parseInt(num_escolhido,10)
 
-  
-  setRodadaPontuacao(prevPontos => prevPontos + resultado);
-  setNumRodadas(prevRodadas => prevRodadas + 1);
-}
-else
-{
-  setTextoGuardado("Você já concluiu as 5 rodadas")
-}
-  
+      const operacao = num - NumeroCriado;
+      const Ponto = Math.abs(operacao);
+      const resultado = 100 - Ponto;
+
+
+    setRodadaPontuacao(prevPontos => prevPontos + resultado);
+    setNumRodadas(prevRodadas => prevRodadas + 1);
+    setNumEscolhido ('');
+    }
+
+    if (num_rodadas === 5) {
+      setJogoFinalizado(true);
+    }
+
  };
-
+  const MensagemPontuacao = (pontos) => {
+  if (pontos >= 450 && pontos <= 499) {
+    return 'Quase perfeito!';
+  } else if (pontos >= 300 && pontos <= 449) {
+    return 'Mandou bem!';
+  } else if (pontos >= 100 && pontos <= 299) {
+    return 'Está quase lá!';
+  } else if (pontos === 500) {
+    return 'Pontuação máxima! Incrível!';
+  } else {
+    return '';
+  }
+}; 
 
   return (
 
     <View style={estilo.Container}>
      <Text style={estilo.Titulo}>Jogo do Sorteio</Text>
-      <Text>{textoguardado}</Text>
+     
 
       <View style={estilo.Bola}>
        <Text style={estilo.textoBola}>{num_sorteado}</Text>
-      </View>
+       <Text>Rodada: {num_rodadas - 1}</Text>
 
+      </View>
+    
+      <Text style={estilo.texto}>{textoguardado}</Text>
+
+      {jogoFinalizado &&(
+      <View style={estilo.Caixa}>
+          <Text>{MensagemPontuacao(pontuacao)}</Text>
+          <Text style={estilo.TextoPontuacao}>Pontuação Total: {pontuacao}</Text>
+    </View>
+    )}
       <TextInput
         placeholder="Digite um numero entre 0 a 99 "
         keyboardType="numeric"
@@ -81,17 +110,17 @@ else
         onChangeText={(texto) => setNumEscolhido(texto)}
         style={estilo.input}
       />
+
+      <View style={estilo.Botao}>
       <Button
       title="Sorteiar"
       onPress={criarNumero}
-      style={estilo.Botao}
       />
+      </View>
     </View>
   
 
   );
-
-
-};
+ };
 
 export default Tela;
