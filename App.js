@@ -6,10 +6,7 @@ import Tela from './components/Tela.inicial/Tela';
 
 const App = () => {
   return (
-   
- 
       <Tela/>
-   
   );
 };
 

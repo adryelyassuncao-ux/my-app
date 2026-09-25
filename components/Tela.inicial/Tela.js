@@ -1,19 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import { ScrollView, View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import estilo from './css'
-
-
-//preciso criar uma veriavel que armazena o numero escolhido<>
-//criar uma variavel para guardar o numero gerado da maquina<>
-//uma variavel para guardar em qual rodada esta<>
-//maquina precisa criar um numero de 0 a 99<>
-//maquina precisa validar o numero escolhido da pessoa para ver se da para acontecer o jogo<>
-//maquina precisa acrescentar uma próxima rodada ate chegar em 5<>
-//depois de numero escolhido e a pessoa enviar maquina faz o calculo da pontuação<>
-//maquina guarda a pontuação da pessoa<>
-//inicia uma nova rodada até chegar a 5
-//final é mostrado a pontuação que é no maximo 500
-
 
 const Tela = () => {
 
@@ -23,6 +10,7 @@ const Tela = () => {
  const [textoguardado, setTextoGuardado] = useState('');
  const [pontuacao, setRodadaPontuacao] = useState(0);
  const [jogoFinalizado, setJogoFinalizado] = useState(false);
+ const [pontoRodada, setPontoRodada] = useState(0);
 
 
 
@@ -58,6 +46,7 @@ const ValidarNum = () =>
       const Ponto = Math.abs(operacao);
       const resultado = 100 - Ponto;
 
+      setPontoRodada(resultado);
 
     setRodadaPontuacao(prevPontos => prevPontos + resultado);
     setNumRodadas(prevRodadas => prevRodadas + 1);
@@ -83,9 +72,18 @@ const ValidarNum = () =>
   }
 }; 
 
+const reiniciarJogo = () => {
+  setNumEscolhido('');
+  setNumSorteado(0);
+  setNumRodadas(1);
+  setTextoGuardado('');
+  setRodadaPontuacao(0);   
+  setPontoRodada(0);   
+};
+
   return (
 
-    <View style={estilo.Container}>
+    <ScrollView contentContainerStyle={estilo.Container}>
      <Text style={estilo.Titulo}>Jogo do Sorteio</Text>
      
 
@@ -96,11 +94,13 @@ const ValidarNum = () =>
       </View>
     
       <Text style={estilo.texto}>{textoguardado}</Text>
+      <Text>Pontuação da rodada: {pontoRodada}</Text>
 
       {jogoFinalizado &&(
       <View style={estilo.Caixa}>
           <Text>{MensagemPontuacao(pontuacao)}</Text>
           <Text style={estilo.TextoPontuacao}>Pontuação Total: {pontuacao}</Text>
+       
     </View>
     )}
       <TextInput
@@ -117,7 +117,13 @@ const ValidarNum = () =>
       onPress={criarNumero}
       />
       </View>
-    </View>
+        <View style={estilo.Reiniciar}>
+            <Button 
+          title="Jogar Novamente" 
+          onPress={reiniciarJogo} 
+        />
+      </View>
+    </ScrollView>
   
 
   );

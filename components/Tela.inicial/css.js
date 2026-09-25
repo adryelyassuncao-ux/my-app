@@ -3,10 +3,12 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
 Container:
 {
-  flex:1,
+  flexGrow:1,
   width:'100%',
+  justifyContent: 'center',
   alignItems:'center',
   backgroundColor: '#ffffff',
+  paddingVertical:30
   
 
 },
@@ -73,6 +75,11 @@ texto:
 TextoPontuacao:
 {
   marginTop:'5%'
+},
+Reiniciar:
+{
+  marginTop:'5%',
+  width:'80%'
 }
 
 });
